@@ -1,5 +1,6 @@
 package lab4;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -8,8 +9,8 @@ import java.util.List;
  */
 public interface FileWriterStrategy {
     
-    public abstract void writeLineToFile(String data, boolean append);
+    public abstract void writeLineToFile(String data, boolean append)throws IOException;
     
-    public abstract void writeAllToFile(List<String> data, boolean append);
+    public abstract void writeAllToFile(List<String> data, boolean append)throws IOException;
 
 }

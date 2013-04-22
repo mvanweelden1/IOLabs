@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -23,14 +21,14 @@ public class TextFileWriter implements FileWriterStrategy {
     }
 
     @Override
-    public void writeLineToFile(String data, boolean append) {
+    public void writeLineToFile(String data, boolean append) throws IOException{
         PrintWriter writer = null;
         try {
             writer = new PrintWriter(new BufferedWriter(new FileWriter(file, append)));
             writer.println(data);
 
         } catch (IOException ex) {
-            Logger.getLogger(TextFileWriter.class.getName()).log(Level.SEVERE, null, ex);
+            throw ex;
         } finally {
             try {
                 writer.close();
@@ -48,7 +46,7 @@ public class TextFileWriter implements FileWriterStrategy {
     }
 
     @Override
-    public void writeAllToFile(List<String> data, boolean append) {
+    public void writeAllToFile(List<String> data, boolean append) throws IOException{
 
         List<String> inputData = new ArrayList<String>(data);
         PrintWriter writer = null;
@@ -59,7 +57,8 @@ public class TextFileWriter implements FileWriterStrategy {
                 writer.println(string);
                 
             }
-        } catch (Exception e) {
+        } catch (IOException ioe) {
+            throw ioe;
         }finally{
             try {
                 writer.close();
@@ -71,13 +70,13 @@ public class TextFileWriter implements FileWriterStrategy {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         TextFileWriter writer1 = new TextFileWriter("src/test.out");
 
         List<String> data = new ArrayList<String>();
-        data.add("Jane|Smith|555 West Ave.|Waukesha|WI|55555|e@b.com|555-555-5558");
-        data.add("John|Smith|555 West Ave.|Waukesha|WI|55555|f@b.com|555-555-5558");
-        data.add("Jack|Anderson|555 West Ave.|Waukesha|WI|55555|g@b.com|555-555-5558");
+        data.add("Jane,Smith,555 West Ave.,Waukesha,WI,55555,e@b.com,555-555-5558");
+        data.add("John,Smith,555 West Ave.,Waukesha,WI,55555,f@b.com,555-555-5558");
+        data.add("Jack,Anderson,555 West Ave.,Waukesha,WI,55555,g@b.com,555-555-5558");
 
 //        for (String string : data) {
 //            writer1.writeLineToFile(string, true);
