@@ -14,11 +14,11 @@ import java.util.logging.Logger;
  *
  * @author Mark Van Weelden <mvanweelden1@my.wctc.edu>
  */
-public class CSVTextFileWriter implements FileWriterStrategy {
+public class TextFileWriter implements FileWriterStrategy {
 
     private File file;
 
-    public CSVTextFileWriter(String filePath) {
+    public TextFileWriter(String filePath) {
         setFile(new File(filePath));
     }
 
@@ -30,7 +30,7 @@ public class CSVTextFileWriter implements FileWriterStrategy {
             writer.println(data);
 
         } catch (IOException ex) {
-            Logger.getLogger(CSVTextFileWriter.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TextFileWriter.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 writer.close();
@@ -72,7 +72,7 @@ public class CSVTextFileWriter implements FileWriterStrategy {
     }
 
     public static void main(String[] args) {
-        CSVTextFileWriter writer1 = new CSVTextFileWriter("src/test.out");
+        TextFileWriter writer1 = new TextFileWriter("src/test.out");
 
         List<String> data = new ArrayList<String>();
         data.add("Jane|Smith|555 West Ave.|Waukesha|WI|55555|e@b.com|555-555-5558");

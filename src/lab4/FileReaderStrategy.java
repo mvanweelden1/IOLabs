@@ -1,12 +1,12 @@
 package lab4;
 
-import java.util.List;
+import java.io.IOException;
 
 /**
  *
  * @author Mark Van Weelden <mvanweelden1@my.wctc.edu>
  */
-public interface FileReaderStrategy {
+public interface FileReaderStrategy<T> {
 
-    public abstract List<String> readFile();
+    public abstract T readFile() throws IOException;
 }
