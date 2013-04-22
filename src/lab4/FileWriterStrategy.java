@@ -6,6 +6,6 @@ package lab4;
  */
 public interface FileWriterStrategy {
     
-    public abstract void writeToFile(String data, Boolean append);
+    public abstract void writeToFile(String data, boolean append);
 
 }
