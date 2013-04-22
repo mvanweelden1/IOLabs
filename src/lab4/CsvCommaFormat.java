@@ -55,7 +55,8 @@ public class CsvCommaFormat implements FormatStrategy<List<LinkedHashMap<String,
             }
 
             // Only add the record if it's not the first row (header)
-            if (recordNo != 0) {
+            if (hasHeader && recordNo == 0) {
+            }else{
                 decodedData.add(record);
             }
         }

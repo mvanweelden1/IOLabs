@@ -61,13 +61,19 @@ public class TextFileReader implements FileReaderStrategy{
     
     public static void main(String[] args) throws IOException {
         
+//        TextFileReader reader = new TextFileReader
+//                (File.separatorChar + "temp" + File.separatorChar
+//                + "contactlist.txt", new CsvCommaFormat(false));
+//        
         TextFileReader reader = new TextFileReader
                 (File.separatorChar + "temp" + File.separatorChar
-                + "contactlist.txt", new CsvCommaFormat(false));
+                + "contactlistWithHeaders.txt", new CsvCommaFormat(true));
         
         List<LinkedHashMap<String, String>> data = reader.readFile();
         
-        System.out.println(data);
+        for (LinkedHashMap<String, String> linkedHashMap : data) {
+            System.out.println(linkedHashMap);
+        }
         
      
         
